@@ -1,0 +1,10 @@
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\bin\Debug\RestoranSiparisTakip.exe.config
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\bin\Debug\RestoranSiparisTakip.exe
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\bin\Debug\RestoranSiparisTakip.pdb
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.csproj.AssemblyReference.cache
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.Form1.resources
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.Properties.Resources.resources
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.csproj.GenerateResource.cache
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.csproj.CoreCompileInputs.cache
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.exe
+D:\uni_ders\2.sınıf\Internet_Programciligi\odevler\RestoranSiparisTakip\obj\Debug\RestoranSiparisTakip.pdb
