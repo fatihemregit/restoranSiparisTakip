@@ -138,6 +138,7 @@
             0,
             0});
             this.sisnum.Visible = false;
+            this.sisnum.ValueChanged += new System.EventHandler(this.sisnum_ValueChanged);
             // 
             // adananum
             // 
@@ -190,17 +191,18 @@
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(91, 20);
             this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Şiş Kebab";
+            this.checkBox2.Text = "Şiş Kebap";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(7, 36);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(112, 20);
+            this.checkBox1.Size = new System.Drawing.Size(111, 20);
             this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Adana Kebab";
+            this.checkBox1.Text = "Adana kebap";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 

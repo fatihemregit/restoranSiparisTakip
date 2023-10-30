@@ -14,8 +14,9 @@ namespace RestoranSiparisTakip
     {
 
         int toplamTutar = 0;
-        
-
+        int adanaadet = 0;
+        Dictionary<string, int> siparisAdetleri = new Dictionary<string, int>();
+        Dictionary<string, int> siparisOldValue = new Dictionary<string, int>();
         public Form1()
         {
             InitializeComponent();
@@ -23,99 +24,106 @@ namespace RestoranSiparisTakip
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //adet varsayılan değer tanımlama
+            siparisAdetleri["Adana kebap"] = 0;
+            siparisAdetleri["Şiş Kebap"] = 0;
+            //old value varsayılan değer tanımlama
+            siparisOldValue["Adana kebap"] = 0;
+            siparisOldValue["Adana kebap"] = 0;
+
+
+
         }
 
         private int siparisUcretiniOgren(String siparisIsmi)
         {
+            //dict kullanarak tüm sipariş fiyatlarını al adetleride dictde tut
+            // adetleri dict te tutmadan önce basit bir değişkende tut ve test et sonra dict e geçir
             //burada jsondan sipariş ismine göre sipariş ücretini getiren kodlar yazılacak
             return 1;
         }
-
-        private void clickToCheckBox(object sender, EventArgs e,NumericUpDown numer)
+        private void toplamtutarHesapla(bool plusorminus)
         {
-            CheckBox checkBox = (CheckBox)sender;
-            string siparisIsmi = checkBox.Text;
-            //checkbox checklendiğinde fiyatın artma ve azaltma işlemleri
-            if (checkBox.Checked)
+            foreach (var siparisadet in siparisAdetleri)
             {
-                numer.Visible = true;
-                numer.Value = 1;
-                //toplamTutar += Convert.ToInt16(numer.Value) * siparisUcretiniOgren(siparisIsmi);
-
+                if (plusorminus == true) {
+                    //değer arttır
+                    toplamTutar += Convert.ToInt16(siparisadet.Value) * siparisUcretiniOgren($"{siparisadet.Key}");
+                }
+                else if (plusorminus == false)
+                {
+                    //değer azalt
+                    toplamTutar -= Convert.ToInt16(siparisadet.Value) * siparisUcretiniOgren($"{siparisadet.Key}");
+                }
             }
-            else
-            {
-                numer.Visible = false;
-
-                //toplamTutar -= siparisUcretiniOgren(siparisIsmi);
-            }
+            label3.Text = $"{toplamTutar}";
         }
 
-        private void tutarHesapla(bool eklemeDurumu,int eklenecekFiyat,int adet) {
-            if (eklemeDurumu) {
-                toplamTutar += eklenecekFiyat * adet;
+        int oldvalue;
+        private void numericUpdownValueChanged(object sender, EventArgs e, string siparisIsmi)
+        {
+            //numeric up down değeri değiştinde çalışacak fonksiyon
+            //numericUpdownChanged main function
+            NumericUpDown numericUpDown = (NumericUpDown)sender;
+            int fark = Convert.ToInt16(numericUpDown.Value) - oldvalue;
+            if (fark > 0)
+            {
+                //değer artmış
+                siparisAdetleri[siparisIsmi] = Convert.ToInt16(fark);
+                toplamtutarHesapla(true);
+            }
+            else if (fark < 0)
+            {
+                siparisAdetleri[siparisIsmi] = Convert.ToInt16(Math.Abs(fark));
+                toplamtutarHesapla(false);
+            }
+            oldvalue = Convert.ToInt16(numericUpDown.Value);
+
+        }
+        private void clickToCheckBox(object sender, EventArgs e,NumericUpDown numer)
+        {
+            //checkbox a tıklandığında çalışacak fonksiyon
+            //checkbox clicked main function
+            //niye NumericUpDown parametresi istedik?
+            /*
+             Çünkü numericupdown ı tıklamaya göre açıp kapatacağız
+             */
+            //controller ve değişken tanımlamaları
+            CheckBox checkBox  = (CheckBox) sender;
+            if (checkBox.Checked == true)
+            {
+                //eğer checkbox işaretli ise çalışacak yer
+                numer.Visible = true;
             }
             else
             {
-                toplamTutar -= eklenecekFiyat * adet;
+                //eğer checkbox işaretli değil ise çalışacak yer
+                numer.Visible = false;
             }
-            label3.Text = $": {toplamTutar}";
+
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            //adana kebab
-            NumericUpDown  adana = adananum;
+            //adana kebab checkbox function
+            clickToCheckBox(sender, e, adananum);
 
-
-            clickToCheckBox(sender, e,adana);
         }
-
-        decimal oldValue;
-
         private void adananum_ValueChanged(object sender, EventArgs e)
         {
-            NumericUpDown numericUpDown = (NumericUpDown)sender;
-            if(numericUpDown.Value == 0){
-                numericUpDown.Visible = false;
-                toplamTutar = 0;
-                label3.Text = $": {toplamTutar}";
-            }
-            else
-            {
+            // Adana kebap numericupdown function
+            numericUpdownValueChanged(sender, e, "Adana kebap");
+        }
 
-                numericUpDown.Visible = true;
-                int fark = (int)numericUpDown.Value - (int)oldValue;
-                if(fark < 0)
-                {
-                    //değer azalmış
-                    tutarHesapla(false, siparisUcretiniOgren("Adana Kebab"), Math.Abs(fark));
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            clickToCheckBox(sender, e, sisnum);
+        }
 
-                }
-                else
-                {
-                    //değer artmış
-                    tutarHesapla(true, siparisUcretiniOgren("Adana Kebab"), fark);
-                }
-
-                //if (numericUpDown.Value > oldValue)
-                //{
-                //    //değer artmış
-                //    int fark = (int)numericUpDown.Value - (int)oldValue;
-                //    tutarHesapla(true, siparisUcretiniOgren("Adana Kebab"),fark);
-                //}
-                //else
-                //{
-                //    //değer azalmış
-                //    int fark = (int)oldValue - (int)numericUpDown.Value;
-                //    tutarHesapla(false, siparisUcretiniOgren("Adana Kebab"),fark);
-                //}
-                oldValue = numericUpDown.Value;
-            }
-            
-
-
-
+        private void sisnum_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpdownValueChanged(sender, e, "Şiş Kebap");
         }
     }
 }
