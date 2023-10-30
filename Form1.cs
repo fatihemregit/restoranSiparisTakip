@@ -26,10 +26,10 @@ namespace RestoranSiparisTakip
         {
             //adet varsayılan değer tanımlama
             siparisAdetleri["Adana kebap"] = 0;
-            siparisAdetleri["Şiş Kebap"] = 0;
+            siparisAdetleri["sis Kebap"] = 0;
             //old value varsayılan değer tanımlama
             siparisOldValue["Adana kebap"] = 0;
-            siparisOldValue["Adana kebap"] = 0;
+            siparisOldValue["sis Kebap"] = 0;
 
 
 
@@ -65,7 +65,7 @@ namespace RestoranSiparisTakip
             //numeric up down değeri değiştinde çalışacak fonksiyon
             //numericUpdownChanged main function
             NumericUpDown numericUpDown = (NumericUpDown)sender;
-            int fark = Convert.ToInt16(numericUpDown.Value) - oldvalue;
+            int fark = Convert.ToInt16(numericUpDown.Value) - siparisOldValue[siparisIsmi];
             if (fark > 0)
             {
                 //değer artmış
@@ -77,7 +77,7 @@ namespace RestoranSiparisTakip
                 siparisAdetleri[siparisIsmi] = Convert.ToInt16(Math.Abs(fark));
                 toplamtutarHesapla(false);
             }
-            oldvalue = Convert.ToInt16(numericUpDown.Value);
+            siparisOldValue[siparisIsmi] = Convert.ToInt16(numericUpDown.Value);
 
         }
         private void clickToCheckBox(object sender, EventArgs e,NumericUpDown numer)
@@ -123,7 +123,7 @@ namespace RestoranSiparisTakip
 
         private void sisnum_ValueChanged(object sender, EventArgs e)
         {
-            numericUpdownValueChanged(sender, e, "Şiş Kebap");
+            numericUpdownValueChanged(sender, e, "sis Kebap");
         }
     }
 }
